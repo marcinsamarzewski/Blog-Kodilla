@@ -2,6 +2,7 @@
 
 function titleClickHandler(event){
   console.log('Link was clicked!');
+  event.preventDefault();
   const clickedElement = this;
   console.log(event);
 
