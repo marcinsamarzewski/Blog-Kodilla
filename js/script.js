@@ -108,7 +108,7 @@ for(let link of links){
 
 function generateTags(){
   /* find all articles */
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
   for(let article of articles){
 
