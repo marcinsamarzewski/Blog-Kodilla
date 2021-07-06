@@ -170,3 +170,9 @@ const articles = document.querySelectorAll(optArticleSelector);
 /* LOOP: article find author wrapper */
 for (let article of articles){
   const wrapperAuthors = article.querySelector(optArticleAuthorSelector);
+ /* make html variable with empty string */
+ let html = '';
+/* get information from data-author attribute */
+const articleAuthors = article.getAttribute('data-author');
+const linkHTMLAuthor = '<a href="#author-'+ articleAuthors +'">'+ articleAuthors +'</a>';
+html = linkHTMLAuthor;
