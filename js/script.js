@@ -162,3 +162,11 @@ function tagClickHandler(event){
   }
   addClickListenersToTags();
 }
+/* moduł 6.1 ADD Author*/
+/* add function generateAuthors */
+function generateAuthors(){
+/* find articles */
+const articles = document.querySelectorAll(optArticleSelector);
+/* LOOP: article find author wrapper */
+for (let article of articles){
+  const wrapperAuthors = article.querySelector(optArticleAuthorSelector);
