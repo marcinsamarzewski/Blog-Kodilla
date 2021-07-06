@@ -180,15 +180,16 @@ function tagClickHandler(event){
   generateTitleLinks('[data-tags~="' + tag + '"]');
 
 
-function addClickListenersToTags(){
+  function addClickListenersToTags(){
   /* find all links to tags */
+    const Taglinks = document.querySelectorAll('a[href^="#tag-"]');
+    /* START LOOP: for each link */
+    for(let Taglink of Taglinks){
 
-  /* START LOOP: for each link */
-
-    /* add tagClickHandler as event listener for that link */
-
-  /* END LOOP: for each link */
-}
-
-addClickListenersToTags();
+      /* add tagClickHandler as event listener for that link */
+      Taglink.addEventListener('click', tagClickHandler);
+    /* END LOOP: for each link */
+    }
+  }
+  addClickListenersToTags();
 }
