@@ -166,13 +166,18 @@ function tagClickHandler(event){
 /* add function generateAuthors */
 function generateAuthors(){
 /* find articles */
-const articles = document.querySelectorAll(optArticleSelector);
-/* LOOP: article find author wrapper */
-for (let article of articles){
-  const wrapperAuthors = article.querySelector(optArticleAuthorSelector);
- /* make html variable with empty string */
- let html = '';
-/* get information from data-author attribute */
-const articleAuthors = article.getAttribute('data-author');
-const linkHTMLAuthor = '<a href="#author-'+ articleAuthors +'">'+ articleAuthors +'</a>';
-html = linkHTMLAuthor;
+  const articles = document.querySelectorAll(optArticleSelector);
+  /* LOOP: article find author wrapper */
+  for (let article of articles){
+    const boxAuthors = article.querySelector(optArticleAuthorSelector);
+    /* make html variable with empty string */
+    let html = '';
+    /* get information from data-author attribute */
+    const articleAuthors = article.getAttribute('data-author');
+    const linkHTMLAuthor = '<a href="#author-'+ articleAuthors +'">'+ articleAuthors +'</a>';
+    html = linkHTMLAuthor;
+    /* insert HTML of all the links into the tags wrapper */
+    boxAuthors.innerHTML = html;
+  }
+}
+generateAuthors();
