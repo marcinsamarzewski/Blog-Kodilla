@@ -49,14 +49,13 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
 
-function generateTitleLinks(customSelector = ''){
+function generateTitleLinks(customSelector =''){
 /* [DONE] remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
   titleList.innerHTML = '';
   /* [DONE] for each article */
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
   let html = '';
-  console.log(html);
   for(let article of articles){
     /* [DONE] get the article id */
     const articleId = article.getAttribute('id');
@@ -66,7 +65,6 @@ function generateTitleLinks(customSelector = ''){
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
     console.log(linkHTML);
     /*[DONE] create HTML of the link */
-    titleList.insertAdjacentHTML('afterbegin',linkHTML);
     /*[DONE] insert link into titleList */
     html = html + linkHTML;
   }
@@ -101,7 +99,7 @@ function generateTags(){
     for(let tag of articleTagsArray){
       console.log(tag);
       /* generate HTML of the link */
-      let TagHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      const TagHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
       /* add generated code to html variable */
       html = html + TagHTML;
     }
@@ -156,7 +154,6 @@ function tagClickHandler(event){
     const Taglinks = document.querySelectorAll('a[href^="#tag-"]');
     /* START LOOP: for each link */
     for(let Taglink of Taglinks){
-
       /* add tagClickHandler as event listener for that link */
       Taglink.addEventListener(tagClickHandler);
     /* END LOOP: for each link */
