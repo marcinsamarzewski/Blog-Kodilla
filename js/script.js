@@ -52,7 +52,23 @@ function generateTitleLinks(customSelector =''){
 generateTitleLinks();
 
 /* moduł 6.1 */
+function calcuateTagsParams(tags){
+  const params = {
+    max: 0,
+    min: 999999,
+  };
+  for(let tag in tags){
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    }
+    if(tags[tag] < params.min){
+      params.min = tags[tag];
+    }
+  }
+  console.log(tags);
+  return params;
 
+}
 function generateTags(){
   let allTags = {};
   const articles = document.querySelectorAll(optArticleSelector);
@@ -74,7 +90,7 @@ function generateTags(){
     titleTag.innerHTML = html;
   }
   const tagList = document.querySelector('.tags');
-
+  const tagsParams = calcuateTagsParams(allTags);
   let allTagsHTML = '';
   for(let tag in allTags){
     allTagsHTML += '<li><a href="#' + tag + '">' + tag + ' ' + '(' + allTags[tag] + ')' + '</a></li> ';
