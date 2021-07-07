@@ -167,7 +167,7 @@ function tagClickHandler(event){
 function generateAuthors(){
 /* find articles */
   const articles = document.querySelectorAll(optArticleSelector);
-  /* LOOP: article find author wrapper */
+  /* LOOP: article find author*/
   for (let article of articles){
     const boxAuthors = article.querySelector(optArticleAuthorSelector);
     /* make html variable with empty string */
@@ -176,7 +176,7 @@ function generateAuthors(){
     const articleAuthors = article.getAttribute('data-author');
     const linkHTMLAuthor = '<a href="#author-'+ articleAuthors +'">'+ articleAuthors +'</a>';
     html = linkHTMLAuthor;
-    /* insert HTML all links in tags wrapper */
+    /* insert HTML all links in tags */
     boxAuthors.innerHTML = html;
   }
 }
@@ -203,4 +203,14 @@ function authorClickHandler(event){
   }
   generateTitleLinks('[data-author="' + author + '"]');
 }
-/* moduł 6.1 ADD authorClickHandler*/
+/* moduł 6.1 Binding the button to the author*/
+function addClickListenersToAuthors(){
+  /* find all links to authors */
+  const links = document.querySelectorAll('a[href^="#author-"]');
+  console.log({links});
+  /* LOOP: for each link add authorClickHandler as event listener for that link */
+  for(let link of links){
+    link.addEventListener('click', authorClickHandler);
+  }
+}
+addClickListenersToAuthors();
