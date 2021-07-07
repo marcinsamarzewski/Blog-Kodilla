@@ -54,7 +54,7 @@ generateTitleLinks();
 /* moduł 6.1 */
 
 function generateTags(){
-  let allTags = [];
+  let allTags = {};
   const articles = document.querySelectorAll(optArticleSelector);
   for(let article of articles){
     const titleTag = article.querySelector(optArticleTagsSelector);
@@ -65,15 +65,23 @@ function generateTags(){
       const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
       html = html + linkHTML;
 
-      if(allTags.indexOf(linkHTML) == -1){
-        allTags.push(linkHTML);
+      if(!allTags.hasOwnProperty(tag)){
+        allTags[tag]= 1;
+      } else {
+        allTags[tag]++;
       }
     }
     titleTag.innerHTML = html;
   }
   const tagList = document.querySelector('.tags');
-  tagList.innerHTML = allTags.join(' ');
+
+  let allTagsHTML = '';
+  for(let tag in allTags){
+    allTagsHTML += '<li><a href="#' + tag + '">' + tag + ' ' + '(' + allTags[tag] + ')' + '</a></li> ';
+  }
+  tagList.innerHTML = allTagsHTML;
 }
+
 generateTags();
 
 /* moduł 6.1 ADD ClickHandler*/
