@@ -176,8 +176,31 @@ function generateAuthors(){
     const articleAuthors = article.getAttribute('data-author');
     const linkHTMLAuthor = '<a href="#author-'+ articleAuthors +'">'+ articleAuthors +'</a>';
     html = linkHTMLAuthor;
-    /* insert HTML of all the links into the tags wrapper */
+    /* insert HTML all links in tags wrapper */
     boxAuthors.innerHTML = html;
   }
 }
 generateAuthors();
+
+/* moduł 6.1 ADD authorClickHandler*/
+function authorClickHandler(event){
+  /* prevent default action for this event */
+  event.preventDefault();
+  /* make new constant named "clickedElement" and give it the value of "this" */
+  const clickedAuthor = this;
+  /* make a new constant "href" and read the attribute "href" of the clicked element */
+  const href = clickedAuthor.getAttribute('href');
+  /* make a new constant "author" and extract author from the "href" constant */
+  const author = href.replace('#author-', '');
+  /* find all author links with class active */
+  const AuthorLinks = document.querySelectorAll('a.active[href^="#author-"]');
+  for (let AuthorLink of AuthorLinks){
+    AuthorLink.classList.remove('active');
+  }
+  const AuthorLinksHref = document.querySelectorAll('a[href="' + href + '"]');
+  for (let AuthorLinkHref of AuthorLinksHref){
+    AuthorLinkHref.classList.add('active');
+  }
+  generateTitleLinks('[data-author="' + author + '"]');
+}
+/* moduł 6.1 ADD authorClickHandler*/
