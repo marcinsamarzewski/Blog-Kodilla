@@ -138,7 +138,7 @@ addClickListenersToTags();
 function addClickListenersToTags(){
   const Taglinks = document.querySelectorAll('a[href^="#tag-"]');
   for(let Taglink of Taglinks){
-    Taglink.addEventListener(tagClickHandler);
+    Taglink.addEventListener('click', tagClickHandler);
   }
 }
 /* moduł 6.1 ADD Author*/
