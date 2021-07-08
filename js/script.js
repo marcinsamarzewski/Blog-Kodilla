@@ -6,7 +6,10 @@ const optArticleSelector = '.post',
   optArticleAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.authors.list',
+  optAuthorClassCount = 5,
+  optAuthorClassPrefix = 'author-size-';
 
 function titleClickHandler(event){
   console.log('Link was clicked!');
@@ -101,8 +104,10 @@ function generateTags(){
   const tagList = document.querySelector('.tags');
   const tagsParams = calcuateTagsParams(allTags);
   let allTagsHTML = '';
+  console.log(allTags);
   for(let tag in allTags){
-    const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag +  '</a></li> ';
+    const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + '\t' + allTags[tag] +  '</a></li> ';
+    console.log('tagLinkHTML:', tagLinkHTML);
     allTagsHTML += tagLinkHTML;
   }
   tagList.innerHTML = allTagsHTML;
