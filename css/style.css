@@ -87,7 +87,7 @@ body {
 
 .author-size-1 {
   font-size: 10px;
-  color: #915fc0;
+  color: #0a0211;
 }
 
 .author-size-2 {
@@ -96,17 +96,17 @@ body {
 }
 
 .author-size-3 {
-  font-size: 30px;
-  color: #f531e4;
+  font-size: 10px;
+  color: #b15e11;
 }
 
 .author-size-4 {
-  font-size: 40px;
+  font-size: 50px;
   color: orangered;
 }
 
 .author-size-5 {
-  font-size: 50px;
+  font-size: 30px;
   color: palevioletred;
 }
 

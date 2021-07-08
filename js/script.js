@@ -70,7 +70,6 @@ function calcuateTagsParams(tags){
       params.min = tags[tag];
     }
   }
-  console.log(tags);
   return params;
 
 }
@@ -120,20 +119,14 @@ generateTags();
 function tagClickHandler(event){
   event.preventDefault();
   const ClickedTag = this;
-  console.log('Tag klikniety');
   const href = ClickedTag.getAttribute('href');
-  console.log(href);
   const tag = href.replace('#tag-', '');
-  console.log(tag);
   const TagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   for(let TagLink of TagLinks){
-    console.log(TagLink);
     TagLink.classList.remove('active');
-    console.log('RemoveClass');
   }
   const HrefTagLinks = document.querySelectorAll('a[href="' + href + '"]');
   for(let HrefTagLink of HrefTagLinks){
-    console.log(HrefTagLink);
     HrefTagLink.classList.add('active');
   }
   generateTitleLinks('[data-tags~="' + tag + '"]');
@@ -148,7 +141,27 @@ function addClickListenersToTags(){
 }
 /* moduł 6.1 ADD Author*/
 
+function calculateAuthorsParams(authors) {
+  const params = {
+    min: 1,
+    max: 5,
+  };
+  for (let author in authors) {
+    params.max = Math.max(authors[author], params.max);
+    params.min = Math.min(authors[author], params.min);
+  }
+  return params;
+}
+function calculateAuthorClass(count, params) {
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (optAuthorClassCount - 1) + 1);
+  return optAuthorClassPrefix + classNumber;
+}
+
 function generateAuthors(){
+  let allAuthors = {};
   const articles = document.querySelectorAll(optArticleSelector);
   for (let article of articles){
     const boxAuthors = article.querySelector(optArticleAuthorSelector);
@@ -156,8 +169,21 @@ function generateAuthors(){
     const articleAuthors = article.getAttribute('data-author');
     const linkHTMLAuthor = '<a href="#author-'+ articleAuthors +'">'+ articleAuthors +'</a>';
     html = linkHTMLAuthor;
+    if (!allAuthors[articleAuthors]) {
+      allAuthors[articleAuthors] = 1;
+    } else {
+      allAuthors[articleAuthors]++;
+    }
     boxAuthors.innerHTML = html;
   }
+  const authorList = document.querySelector(optAuthorsListSelector);
+  const authorsParams = calculateAuthorsParams(allAuthors);
+  let allAuthorsHTML = '';
+  for (let articleAuthor in allAuthors) {
+    const authorLinkHTML = calculateAuthorClass(allAuthors[articleAuthor], authorsParams);
+    allAuthorsHTML += '<li><a href="#author-' + articleAuthor + '" class ="' + authorLinkHTML + '">' + articleAuthor + '</a> ' + allAuthors[articleAuthor] + '</li>';
+  }
+  authorList.innerHTML = allAuthorsHTML;
 }
 generateAuthors();
 
@@ -181,7 +207,6 @@ function authorClickHandler(event){
 /* moduł 6.1 Binding the button to the author*/
 function addClickListenersToAuthors(){
   const links = document.querySelectorAll('a[href^="#author-"]');
-  console.log({links});
   for(let link of links){
     link.addEventListener('click', authorClickHandler);
   }
